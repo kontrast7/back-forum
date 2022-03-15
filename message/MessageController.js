@@ -49,7 +49,7 @@ class MessageController {
     }
     async delete(req, res) {
         try {
-            const post = await MessageService.create(req.params.id);
+            const post = await MessageService.delete(req.params.id);
             return res.json(post);
         } catch (e) {
             res.status(500).json(e);
