@@ -1,12 +1,9 @@
 import ForumService from "./ForumService.js";
-import events from "events"
-const emitter = new events.EventEmitter();
 
 class ForumController {
     async create(req, res) {
         try {
             const post = await ForumService.create(req.body)
-            emitter.emit("getAll", req.body)
             res.json(post)
         } catch (e) {
             console.log(e, req.body)
@@ -17,9 +14,6 @@ class ForumController {
     async getAll(req, res) {
         try {
             const posts = await ForumService.getAll();
-            emitter.once("getAll", (posts)=> {
-                res.json(posts)
-            })
             return res.json(posts);
         } catch (e) {
             res.status(500).json(e)

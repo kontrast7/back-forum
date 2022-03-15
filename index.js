@@ -3,13 +3,11 @@ import express from "express";
 import mongoose from "mongoose";
 import router from "./router.js";
 import fileUpload from "express-fileupload";
-import events from "events"
 
 const PORT = process.env.PORT || 5000;
 const DB_URL = `mongodb+srv://user:user@cluster0.2lln3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const app = express();
 
-const emitter = new events.EventEmitter();
 app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
